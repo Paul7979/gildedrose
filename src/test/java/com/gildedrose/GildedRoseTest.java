@@ -54,7 +54,7 @@ class GildedRoseTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("com.gildedrose.TestCasesProvider#provideItemsAndExpectedResults")
-    void test(String displayName, Item provided, Item expected) {
+    void testVariousSellInQualityItemTypeCombinations(String displayName, Item provided, Item expected) {
         GildedRose app = createSingleItemApp(provided);
 
         app.updateQuality();

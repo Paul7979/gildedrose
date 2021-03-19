@@ -1,9 +1,13 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 class GildedRose {
     public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASSES_FOR_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String CONJURED_MANA_CAKE = "Conjured Mana Cake";
 
 
     Item[] items;
@@ -13,8 +17,16 @@ class GildedRose {
     }
 
 
-
     public void updateQuality() {
+        AbstractUpdaterFactory updaterFactory = new AbstractUpdaterFactory();
+        List<Item> items = Arrays.asList(this.items);
+        items.forEach(item -> {
+            var updater = updaterFactory.getUpdater(item.name);
+            updater.updateItem(item);
+        });
+    }
+
+    /*public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals(AGED_BRIE)
                     && !items[i].name.equals(BACKSTAGE_PASSES_FOR_CONCERT)) {
@@ -65,5 +77,5 @@ class GildedRose {
                 }
             }
         }
-    }
+    }*/
 }
